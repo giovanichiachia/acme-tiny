@@ -113,14 +113,14 @@ def get_crt(account_key, csr, acme_dir, log=LOGGER, CA=DEFAULT_CA):
 
         # check that the file is in place
         wellknown_url = "http://{0}/.well-known/acme-challenge/{1}".format(domain, token)
-        try:
-            resp = urlopen(wellknown_url)
-            resp_data = resp.read().decode('utf8').strip()
-            assert resp_data == keyauthorization
-        except (IOError, AssertionError):
-            os.remove(wellknown_path)
-            raise ValueError("Wrote file to {0}, but couldn't download {1}".format(
-                wellknown_path, wellknown_url))
+        #try:
+        #    resp = urlopen(wellknown_url)
+        #    resp_data = resp.read().decode('utf8').strip()
+        #    assert resp_data == keyauthorization
+        #except (IOError, AssertionError):
+        #    os.remove(wellknown_path)
+        #    raise ValueError("Wrote file to {0}, but couldn't download {1}".format(
+        #        wellknown_path, wellknown_url))
 
         # notify challenge are met
         code, result = _send_signed_request(challenge['uri'], {
